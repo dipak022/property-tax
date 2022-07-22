@@ -167,13 +167,23 @@ Banner Manage
                                     <div class="row">
                                         <div class="col-md-12">
                                             <strong>Title :</strong>
-                                            <p>{{$banner->title}}</p>
+                                            <p>
+                                            @if($banner->title !=null)
+                                            {{$banner->title}}
+                                            @else
+                                            @endif
+                                          </p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <strong>description :</strong>
-                                            <p>{{$banner->description}}</p>
+                                            <p>
+                                            @if($banner->description !=null)
+                                            {{$banner->description}}
+                                            @else
+                                            @endif  
+                                           </p>
                                         </div>
                                     </div>
                                     <div class="row">

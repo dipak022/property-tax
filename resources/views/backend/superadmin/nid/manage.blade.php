@@ -45,6 +45,7 @@ Nid Manage
                   <thead>
                   <tr>
                     <th>S.N.</th>
+                    <th>Photo</th>
                     <th>Nid</th>
                     <th>Name</th>
                     <th>Father Name</th>
@@ -60,6 +61,7 @@ Nid Manage
                   @foreach($nids as $item)
                     <tr>
                         <td>{{$loop->iteration}}</td>
+                        <td><img style=" height:50px; width:50px; border-radius: 25px;" src="{{asset($item->image)}}"></td>
                         <td>{{$item->nid_number}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->father_name}}</td>
@@ -116,6 +118,17 @@ Nid Manage
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" class="form-control" placeholder="Enter permanent address" value="{{$item->permanent_address}}" name="permanent_address" />
+                                            </div>
+                                           
+                                            <div class="form-group">
+                                                <label>Upload Image</label>
+                                                <input type="file" class="form-control rounded" name="image" onchange="readURLImage(this);" >
+                                                </br>
+                                                @if($item->image !=null)
+                                                <img style=" height:150px; width:150px; border-radius: 25px;" src="{{asset($item->image)}}" id="image">
+                                                @else
+                                                <img style=" height:150px; width:150px; border-radius: 25px;" src="{{asset('1.jpg')}}" id="image">
+                                                @endif
                                             </div>
                                             <div class="form-group">
                                                <select name="gender" class="form-control">
@@ -192,6 +205,12 @@ Nid Manage
                       <input type="text" class="form-control" placeholder="Enter permanent address"  name="permanent_address" value="{{old('permanent_address')}}" />
                   </div>
                   <div class="form-group">
+                      <label>Upload Image</label>
+                        <input type="file" class="form-control rounded" name="image" onchange="readURLImageAdd(this);">
+                      </br>
+                      <img style="height:150px; width:150px; border-radius: 25px;" src="{{asset('1.jpg')}}" id="image1">
+                  </div>
+                  <div class="form-group">
                       <select name="gender" class="form-control">
                       <option disabled selected >Select Gender</option>
                       <option value="male" {{old("male") == 1 ? "selected" : "" }}>Male</option>
@@ -218,7 +237,34 @@ Nid Manage
 
 @section('scripts')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+	function readURLImage(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              $('#image')
+                  .attr('src', e.target.result)
+                  .width(150)
+                  .height(150);
+          };
+          reader.readAsDataURL(input.files[0]);
+      }
+   }
 
+
+   function readURLImageAdd(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              $('#image1')
+                  .attr('src', e.target.result)
+                  .width(150)
+                  .height(150);
+          };
+          reader.readAsDataURL(input.files[0]);
+      }
+   }
+</script>
 <script>
     $.ajaxSetup({
     headers: {

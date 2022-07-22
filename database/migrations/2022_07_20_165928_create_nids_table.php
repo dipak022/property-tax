@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable();
             $table->string('phone')->nullable();
             $table->string('gender')->nullable();
+            $table->string('image')->nullable();
             $table->string('permanent_address')->nullable();
             $table->string('current_address')->nullable();
             $table->timestamps();

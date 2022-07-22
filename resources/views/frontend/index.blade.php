@@ -25,7 +25,10 @@ $seting=App\Models\Seting::orderBy('id','DESC')->first();
         <div class="row content">
           <div class="col-lg-12">
             <p>
+             @if($about->details !=null)
              {{$about->details}}
+             @else
+             @endif
             </p>
             <a href="#" class="btn-learn-more">Learn More</a>
           </div>

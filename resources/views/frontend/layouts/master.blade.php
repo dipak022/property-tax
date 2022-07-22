@@ -66,7 +66,7 @@ $seting=App\Models\Seting::orderBy('id','DESC')->first();
           
           @guest
           <li><a class="nav-link scrollto" href="{{route('login')}}">Login</a></li>
-          <li><a class="nav-link scrollto" href="{{route('register')}}">Registation</a></li>
+          <li><a class="nav-link scrollto" href="{{route('reg')}}">Registation</a></li>
          
           @else
           <li><a class="nav-link scrollto" href="{{ route('profile') }}">Profile</a></li>

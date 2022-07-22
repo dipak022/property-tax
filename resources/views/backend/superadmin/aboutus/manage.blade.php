@@ -150,7 +150,12 @@ About Us Manage
                                     <div class="row">
                                         <div class="col-md-12">
                                             <strong>Description :</strong>
-                                            <p>{{$about->details}}</p>
+                                            <p>
+                                            @if($about->details !=null)
+                                            {{$about->details}}
+                                            @else
+                                            @indif
+                                            </p>
                                         </div>
                                     </div>
                                    

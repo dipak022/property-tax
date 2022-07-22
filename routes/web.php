@@ -19,6 +19,14 @@ Route::middleware(['middleware'=>'PreventBackHistory'])->group(function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/reg', [App\Http\Controllers\UserRegistationController::class, 'Registation'])->name('reg');
+
+Route::post('/reg1/store', [App\Http\Controllers\UserRegistationController::class, 'RegistationOne'])->name('reg1.store');
+
+Route::post('/reg2/store', [App\Http\Controllers\UserRegistationController::class, 'RegistationTwo'])->name('reg2.store');
+
+Route::post('/reg3/store', [App\Http\Controllers\UserRegistationController::class, 'RegistationThree'])->name('reg3.store');
+
 
 
 Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHistory']], function(){

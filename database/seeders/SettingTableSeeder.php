@@ -16,12 +16,12 @@ class SettingTableSeeder extends Seeder
     {
         \DB::table('setings')->insert([
            
-            'website_name'=>'Tachnical Equipment Slover',
-            'short_desc'=>'Tachnical Equipment Slover',
+            'website_name'=>'property-tax',
+            'short_desc'=>'property-tax',
             'address'=>'Dhaka dhanmondi',
             'email'=>'problem.solve@gmail.com',
             'phone'=>'0162564554',
-            'footer'=>'Linkon',
+            'footer'=>'sadia',
             'facebook_url'=>'https://facebook.com/',
             'twitter_url'=>'https://facebook.com/',
             'linkedin_url'=>'https://facebook.com/',

@@ -322,10 +322,11 @@ body a {
         <div class="row">
           <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
             <div class="multisteps-form__progress">
-              <button class="multisteps-form__progress-btn js-active" type="button" title="User Info">User Info</button>
-              <button class="multisteps-form__progress-btn js-active" type="button" title="Address">Address</button>
-              <button class="multisteps-form__progress-btn" type="button" title="Order Info">Order Info</button>
-              <button class="multisteps-form__progress-btn" type="button" title="Comments">Comments        </button>
+              <button class="multisteps-form__progress-btn js-active" type="button" title="User Info"> Identity of the nation</button>
+              <button class="multisteps-form__progress-btn js-active" type="button" title="Address">National identity information</button>
+              <button class="multisteps-form__progress-btn" type="button" title="Order Info">User Info</button>
+              <button class="multisteps-form__progress-btn" type="button" title="Comments">Confirmation National identity </button>
+              <button class="multisteps-form__progress-btn" type="button" title="Comments">Complete Registation</button>
             </div>
           </div>
         </div>
@@ -357,6 +358,7 @@ body a {
                               <p>Gender: {{ $nid_details->gender }}</p>    
                               <p>Permanent Address: {{ $nid_details->permanent_address }}</p>
                               <input type="hidden" name="image" value="{{ $nid_details->image }}"/>
+                              <input type="hidden" name="name" value="{{ $nid_details->name }}"/>
                               <input type="hidden" name="nid_number" value="{{ $nid_details->nid_number }}"/>
                               <input type="hidden" name="father_name" value="{{ $nid_details->father_name }}"/>
                               <input type="hidden" name="mother_name" value="{{ $nid_details->mother_name }}"/>

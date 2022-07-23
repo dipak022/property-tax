@@ -209,6 +209,55 @@ body a {
 }
 
 </style>
+<style>
+  .id-card-wrapper {
+  height:50%;
+  width:100%;
+  background-color: #122023;
+  display: flex;
+}
+.id-card {
+  flex-basis: 100%;
+  /* max-width: 30em; */
+  border: 2px solid #0AE0DF;
+  margin: auto;
+  color: #fff;
+  padding: 1em;
+}
+
+.profile-row {
+  display: flex;
+}
+.profile-row .dp {
+  flex-basis: 33.3%;
+  position: relative;
+  margin: 24px;
+}
+.profile-row .desc {
+  flex-basis: 66.6%;
+}
+
+.profile-row .dp img {
+  max-width: 100%;
+  border-radius: 50%;
+  display: block;
+}
+.profile-row .desc {
+  padding: 1em;
+}
+
+
+
+
+
+.profile-row .desc {
+  font-family: 'Orbitron', sans-serif;
+  color: #a4f3f2;
+}
+.profile-row .desc h1 {
+  margin: 0px;
+}
+</style>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -230,36 +279,60 @@ body a {
           <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
             <div class="multisteps-form__progress">
               <button class="multisteps-form__progress-btn js-active" type="button" title="User Info"> Identity of the nation</button>
-              <button class="multisteps-form__progress-btn" type="button" title="Address">National identity information</button>
-              <button class="multisteps-form__progress-btn" type="button" title="Order Info">User Info</button>
-              <button class="multisteps-form__progress-btn" type="button" title="Comments">Confirmation National identity </button>
+              <button class="multisteps-form__progress-btn js-active" type="button" title="Address">National identity information</button>
+              <button class="multisteps-form__progress-btn js-active" type="button" title="Order Info">User Info</button>
+              <button class="multisteps-form__progress-btn js-active" type="button" title="Comments">Confirmation National identity </button>
               <button class="multisteps-form__progress-btn" type="button" title="Comments">Complete Registation</button>
             </div>
           </div>
         </div>
         <!--form panels-->
-        <div class="row">
+               <!--form panels-->
+               <div class="row">
           <div class="col-12 col-lg-8 m-auto">
-            <form  action="{{ route('reg1.store') }}" method="POST">
-              @csrf
               <!--single form panel-->
-              <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" >
-                <h3 class="multisteps-form__title">The identity of the nation</h3>
+              <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
+                <h3 class="multisteps-form__title">National identity information</h3>
                 <div class="multisteps-form__content">
                   <div class="form-row mt-4">
-                    <div class="col-12 col-sm-12">
-                      <input class="t form-control" type="number" placeholder="Nid Number" name="nid_number"/>
-                    </div>
-                    <div class="col-12 col-md-12 mt-4">
-                      <input class=" form-control" type="date" placeholder="Last Name" name="date_of_birth"/>
+                  <div class="id-card-wrapper">
+                    <div class="id-card">
+                      <div class="profile-row">
+                        @if($nid_details)
+                        <div class="dp">
+                          <div class="dp-arc-outer"></div>
+                          <div class="dp-arc-inner"></div>
+                          <img src="{{ asset($nid_details->image) }}"  style="margin-top: 46px; height: 200px; width: 200px;" >
+                        </div>
+                        <div class="desc">
+                          <h3>{{ $nid_details->name }}</h3>
+                              <p>Nid Number: {{ $nid_details->nid_number }}</p>
+                              <p>Father Name: {{ $nid_details->father_name }}</p>  
+                              <p>Mother Name: {{ $nid_details->mother_name }}</p>  
+                              <p>Date Of Birth: {{ $nid_details->date_of_birth }}</p>  
+                              <p>Gender: {{ $nid_details->gender }}</p>    
+                              <p>Permanent Address: {{ $nid_details->permanent_address }}</p>
+                        </div>
+                        @else
+                        <h3 class="text-center"><span style="color:red;"> <br>Not Found !!! </span> Please valid NID Number ! try Again, Thank You.</h3>
+                        @endif
+                        
+                      </div>
                     </div>
                   </div>
+                  <div>
+                          <h3 class="text-center"><span class=" text-danger"> <br>Are you sure this is your national identity card,if sure then confirm, </span> Thank You.</h3>
+                        </div>
+                  </div>
                   <div class="button-row d-flex mt-4">
-                  <button class="btn btn-primary ml-auto " type="submit" >Next</button>
+                   <a href="{{ route('reg') }}" class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</a>
+                   @if($nid_details)
+                    <a class="btn btn-primary ml-auto js-btn-next" href="{{ route('registation.store') }}" title="Next">Confirm</a>
+                    @else
+                    @endif
                   </div>
                 </div>
               </div>
-            </form>
           </div>
         </div>
       </div>

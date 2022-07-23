@@ -25,12 +25,13 @@ class UserController extends Controller
            $this->middleware('auth');
        }
        function index(){
-       return view('frontend.index');
+        
+        return view('frontend.index');
        }
 
        public function profile(){
-        $problems=Problem::where('user_id',auth()->user()->id)->orderBy('id','DESC')->get(); 
-        return view('frontend.profile',compact('problems'));
+        $country=DB::table('districts')->orderBy('id','asc')->get();
+        return view('frontend.profile',compact('country'));
        }
 
        public function Store(Request $request){

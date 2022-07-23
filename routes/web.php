@@ -27,14 +27,36 @@ Route::post('/reg2/store', [App\Http\Controllers\UserRegistationController::clas
 
 Route::post('/reg3/store', [App\Http\Controllers\UserRegistationController::class, 'RegistationThree'])->name('reg3.store');
 
+Route::get('/registation/store', [App\Http\Controllers\UserRegistationController::class, 'ConfirmRegistation'])->name('registation.store');
+
+
+
+Route::post('/getMunicipality', [App\Http\Controllers\SelectCategoryController::class,'getMunicipality']);
+    
+Route::post('/getWard', [App\Http\Controllers\SelectCategoryController::class,'getWard']);
+
+Route::post('/getBlock', [App\Http\Controllers\SelectCategoryController::class,'getBlock']);
+
+Route::post('/getSubBlock', [App\Http\Controllers\SelectCategoryController::class,'getSubBlock']);
+
+
+Route::resource('/porperty-tax', App\Http\Controllers\PopertyTexController::class);
+
+
+
 
 
 Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHistory']], function(){
     Route::get('dashboard',[App\Http\Controllers\User\UserController::class,'index'])->name('user.dashboard');
     Route::get('profile',[App\Http\Controllers\User\UserController::class,'profile'])->name('profile');
+
+    
+
     Route::post('store_problem',[App\Http\Controllers\User\UserController::class,'Store'])->name('user.problem.store');
 
     Route::get('delete_problem/{id}',[App\Http\Controllers\User\UserController::class,'delete'])->name('user.problem.delete');
+
+    
 
 });
 

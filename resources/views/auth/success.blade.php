@@ -259,18 +259,17 @@ body a {
         <div class="row">
           <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
             <div class="multisteps-form__progress">
-              <button class="multisteps-form__progress-btn js-active" type="button" title="User Info">User Info</button>
-              <button class="multisteps-form__progress-btn js-active" type="button" title="Address">Address</button>
-              <button class="multisteps-form__progress-btn js-active" type="button" title="Order Info">Order Info</button>
-              <button class="multisteps-form__progress-btn js-active" type="button" title="Comments">Comments</button>
+            <button class="multisteps-form__progress-btn js-active" type="button" title="User Info"> Identity of the nation</button>
+              <button class="multisteps-form__progress-btn js-active" type="button" title="Address">National identity information</button>
+              <button class="multisteps-form__progress-btn js-active" type="button" title="Order Info">User Info</button>
+              <button class="multisteps-form__progress-btn js-active" type="button" title="Comments">Confirmation National identity </button>
+              <button class="multisteps-form__progress-btn js-active" type="button" title="Comments">Complete Registation</button>
             </div>
           </div>
         </div>
         <!--form panels-->
         <div class="row">
           <div class="col-12 col-lg-8 m-auto">
-            <form  action="{{ route('reg1.store') }}" method="POST">
-              @csrf
               <!--single form panel-->
               <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" >
                 <h3 class="multisteps-form__title">The identity of the nation</h3>
@@ -285,11 +284,10 @@ body a {
                     </div>
                   </div>
                   <div class="button-row d-flex mt-4">
-                  <button class="btn btn-primary ml-auto " type="submit" >Login</button>
+                  <a href="{{ route('login') }}" class="btn btn-primary ml-auto ">Login</a>
                   </div>
                 </div>
               </div>
-            </form>
           </div>
         </div>
       </div>

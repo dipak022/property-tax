@@ -29,8 +29,8 @@ Route::group(['prefix'=>'superadmin', 'middleware'=>['isSuperadmin','auth','Prev
      Route::resource('/setting', App\Http\Controllers\Superadmin\SetingController::class);
 
      // manage question route here 
-     Route::resource('/technician_account', App\Http\Controllers\Superadmin\TechnicianAcountController::class);
-     Route::post('/technician_account_status', [App\Http\Controllers\Superadmin\TechnicianAcountController::class, 'TechnicianAcountStatus'])->name('technician_account.status');
+     Route::resource('/user_account', App\Http\Controllers\Superadmin\UserAcountController::class);
+     Route::post('/user_account_status', [App\Http\Controllers\Superadmin\UserAcountController::class, 'TechnicianAcountStatus'])->name('user_account.status');
 
      Route::resource('/problem', App\Http\Controllers\Superadmin\ProblemController::class);
 

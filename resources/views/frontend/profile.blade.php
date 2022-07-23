@@ -9,21 +9,7 @@ Profile Page
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>All Problems</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('user.dashboard')}}">Home</a></li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+  
 
     <!-- Main content -->
     <section class="content">
@@ -31,64 +17,41 @@ Profile Page
         <div class="row">
           <div class="col-12">
            
+          <div class="container">
+            <h2> Select Divition</h2>
+            <form action="{{ route('porperty-tax.store') }}" method="post">
+              @csrf
+              <div class="form-group">
 
-            <div class="card">
-              <div class="card-header">
+              <select id="divition" class="form-control" name="divition" >
+                <option value="">Select Divition</option>
+                @foreach($country as $list)
+                  <option value="{{$list->id}}">{{$list->district_name}}</option>
+                @endforeach
+              </select>
+              
+              <br/>
+              <select id="municipality" class="form-control" name="municipality" >
+                <option value="">Select municipality</option>
+              </select>
+              <br/>
+              <select id="ward" class="form-control" name="ward" >
+                <option value="">Select Ward</option>
+              </select>
+              <br/>
+              <select id="block" class="form-control" name="block" >
+                <option value="">Select Ward</option>
+              </select>
+
+              <br/>
+              <select id="subblock" class="form-control" name="subblock" >
+                <option value="">Select Ward</option>
+              </select>
+ <button ttpe="submit">add</button>
               </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>S.N.</th>
-                    <th>Problem Title</th>
-                    <th>Room Number</th>
-                    <th>Floor Number</th>
-                    <th>Equipment Number</th>
-                    <th>Status</th> 
-                    <th>Action</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  @foreach($problems as $item)
-                    <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$item->problem_title}}</td>
-                        <td>{{$item->room_number}}</td>
-                        <td>{{$item->floor_number}}</td>
-                        <td>{{$item->equipment_number}}</td>
-                        <td>
-                          @if($item->status==1)
-                            <span class="badge badge-success"> Request </span>
-                           @elseif($item->status==2)
-                           <span class="badge badge-success"> Send Tachnician </span>
-                           @elseif($item->status==3)
-                           <span class="badge badge-success"> Problen Solved </span>
-                           @elseif($item->status==4)
-                           <span class="badge badge-success"> Send Officer For Equipment </span>
-                           @elseif($item->status==5)
-                           <span class="badge badge-success"> Equipment Buying Done</span>
-                           @endif
-                        </td>
-                        <td>
-                        <a href="{{ route('user.problem.delete',$item->id) }}" data-type="confirm" class="dltBtn btn-sm btn-danger js-sweetalert" title="Delete">
-                                <i class="fas fa-trash">
-                                </i>
-                                Delete
-                            </a>
-                        
-                            
-                        </td>
-                    </tr>
-                       
-                  @endforeach   
-                  </tbody>
-                
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+              </form>
+          </div>
+           
           </div>
           <!-- /.col -->
         </div>
@@ -99,4 +62,65 @@ Profile Page
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+
+		<script>
+		
+
+      jQuery(document).ready(function(){
+			jQuery('#divition').change(function(){
+				let cid=jQuery(this).val();
+				jQuery('#ward').html('<option value="">Select Ward</option>')
+				jQuery.ajax({
+					url:'/getMunicipality',
+					type:'post',
+					data:'cid='+cid+'&_token={{csrf_token()}}',
+					success:function(result){
+						jQuery('#municipality').html(result)
+					}
+				});
+			});
+			
+      jQuery('#municipality').change(function(){
+				let wid=jQuery(this).val();
+				jQuery('#block').html('<option value="">Select Block</option>')
+				jQuery.ajax({
+					url:'/getWard',
+					type:'post',
+					data:'wid='+wid+'&_token={{csrf_token()}}',
+					success:function(result){
+						jQuery('#ward').html(result)
+					}
+				});
+			});
+
+      jQuery('#ward').change(function(){
+				let bid=jQuery(this).val();
+				jQuery('#subblock').html('<option value="">Select Sub-Block</option>')
+				jQuery.ajax({
+					url:'/getBlock',
+					type:'post',
+					data:'bid='+bid+'&_token={{csrf_token()}}',
+					success:function(result){
+						jQuery('#block').html(result)
+					}
+				});
+			});
+
+			jQuery('#block').change(function(){
+				let sbid=jQuery(this).val();
+				jQuery.ajax({
+					url:'/getSubBlock',
+					type:'post',
+					data:'sbid='+sbid+'&_token={{csrf_token()}}',
+					success:function(result){
+						jQuery('#subblock').html(result)
+					}
+				});
+			});
+			
+		});
+			
+		</script>
 @endsection

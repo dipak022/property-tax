@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Service;
 use DB;
-class TechnicianAcountController extends Controller
+class UserAcountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,15 +21,8 @@ class TechnicianAcountController extends Controller
      */
     public function index()
     {
-        $servicess=Service::where('active',1)->orderBy('id','DESC')->get(); 
-        //$technicians=User::where('role',4)->orderBy('id','DESC')->get(); 
-
-        $technicians=DB::table('users')
-            ->join('services','users.type','services.id')
-            ->where('users.role',4)
-            ->select('users.*','services.service_name')
-            ->get();
-        return view('backend.superadmin.technician.manage',compact('technicians','servicess'));
+        $users=DB::table('users')->where('role',3)->get();
+        return view('backend.superadmin.user.manage',compact('users'));
     }
 
     public function TechnicianAcountStatus(Request $request){
@@ -148,19 +141,19 @@ class TechnicianAcountController extends Controller
      */
     public function destroy($id)
     {
-        $tachnician = User::find($id);
-        if($tachnician){
-            $status = $tachnician->delete();
+        $user = User::find($id);
+        if($user){
+            $status = $user->delete();
             if ($status) {
                 $notification = array(
-                    'message' => 'Tachnician Delete Successfully.',
+                    'message' => 'User Account Delete Successfully.',
                     'alert-type' => 'success'
                 );
-                return redirect()->route('technician_account.index')->with($notification);
+                return redirect()->route('user_account.index')->with($notification);
             }
         }else{
             $notification = array(
-                'message' => 'Tachnician Delete Unsuccessfully',
+                'message' => 'User Delete Unsuccessfully',
                 'alert-type' => 'danger'
             );
             return redirect()->back()->with($notification);

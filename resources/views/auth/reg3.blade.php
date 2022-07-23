@@ -229,10 +229,11 @@ body a {
         <div class="row">
           <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
             <div class="multisteps-form__progress">
-              <button class="multisteps-form__progress-btn js-active" type="button" title="User Info">User Info</button>
-              <button class="multisteps-form__progress-btn js-active" type="button" title="Address">Address</button>
-              <button class="multisteps-form__progress-btn js-active" type="button" title="Order Info">Order Info</button>
-              <button class="multisteps-form__progress-btn" type="button" title="Comments">Comments</button>
+              <button class="multisteps-form__progress-btn js-active" type="button" title="User Info"> Identity of the nation</button>
+              <button class="multisteps-form__progress-btn js-active" type="button" title="Address">National identity information</button>
+              <button class="multisteps-form__progress-btn js-active" type="button" title="Order Info">User Info</button>
+              <button class="multisteps-form__progress-btn" type="button" title="Comments">Confirmation National identity </button>
+              <button class="multisteps-form__progress-btn" type="button" title="Comments">Complete Registation</button>
             </div>
           </div>
         </div>
@@ -243,7 +244,7 @@ body a {
               @csrf
               <!--single form panel-->
               <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" >
-                <h3 class="multisteps-form__title">The identity of the nation</h3>
+                <h3 class="multisteps-form__title">User Info</h3>
                 <div class="multisteps-form__content">
                   <div class="form-row mt-4">
                     <div class="col-12 col-sm-12 col-sm-12 mt-4">
@@ -264,6 +265,7 @@ body a {
                     </div>
                   </div>
                   <div class="button-row d-flex mt-4">
+                  <!-- <a href="{{ route('reg1.store') }}" class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</a> -->
                   <button class="btn btn-primary ml-auto " type="submit" >Next</button>
                   </div>
                 </div>

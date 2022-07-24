@@ -40,6 +40,24 @@ Route::post('/getBlock', [App\Http\Controllers\SelectCategoryController::class,'
 Route::post('/getSubBlock', [App\Http\Controllers\SelectCategoryController::class,'getSubBlock']);
 
 
+// new 
+Route::post('/fetch-municipality/{id}',[App\Http\Controllers\SelectCategoryController::class,'fetchMunicipality']);
+
+Route::post('/fetch-ward/{id}',[App\Http\Controllers\SelectCategoryController::class,'fetchWard']);
+
+Route::post('/fetch-block/{id}',[App\Http\Controllers\SelectCategoryController::class,'fetchBlock']);
+
+Route::post('/fetch-subblock/{id}',[App\Http\Controllers\SelectCategoryController::class,'fetchSubBlock']);
+
+
+Route::post('/save',[AccountController::class,'save']);
+Route::get('/list',[AccountController::class,'list']);
+
+Route::get('/edit/{id}',[AccountController::class,'edit']);
+Route::post('/edit/{id}',[AccountController::class,'update']);
+
+
+
 Route::resource('/porperty-tax', App\Http\Controllers\PopertyTexController::class);
 
 

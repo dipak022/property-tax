@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('divition')->nullable();
             $table->string('municipality')->nullable();
             $table->string('ward')->nullable();
-            $table->date('block')->nullable();
+            $table->string('block')->nullable();
             $table->string('subblock')->nullable();
             $table->string('poperty_tax')->nullable();
             $table->string('holding_number')->nullable();

@@ -30,8 +30,13 @@ class UserController extends Controller
        }
 
        public function profile(){
-        $country=DB::table('districts')->orderBy('id','asc')->get();
-        return view('frontend.profile',compact('country'));
+        $districts = DB::table('districts')->orderBy('district_name','ASC')->get();
+        $data['districts'] = $districts;
+        return view('frontend.profile',$data);
+
+
+        // $country=DB::table('districts')->orderBy('id','asc')->get();
+        // return view('frontend.profile',compact('country'));
        }
 
        public function Store(Request $request){
